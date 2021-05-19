@@ -11,7 +11,7 @@
       </div>
       <nav class="level is-mobile">
         <router-link :to="route"
-          ><span class="tag is-info">View Drink</span></router-link
+          ><span class="button is-info is-small">View Drink</span></router-link
         >
       </nav>
     </div>

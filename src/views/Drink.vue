@@ -2,7 +2,12 @@
   <div class="container">
     <div class="columns">
       <div class="column is-one-third">
-        <Card :id="id" :image="drink.strDrinkThumb" :title="drink.strDrink" />
+        <Card
+          v-if="!isLoading"
+          :id="id"
+          :image="drink.strDrinkThumb"
+          :title="drink.strDrink"
+        />
         <div class="mt-4">
           <button class="button is-medium is-info is-outlined is-fullwidth">
             <span>Add Favorite</span>
@@ -63,11 +68,13 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
       drink: {}
     }
   },
   async created() {
     this.drink = await getDrinkById(this.id)
+    this.isLoading = false
   },
   computed: {
     ingredients() {
