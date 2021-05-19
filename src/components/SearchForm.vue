@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { searchDrinkByName } from '../services/drinks'
+import { searchDrinkByName, searchDrinkByIngredient } from '../services/drinks'
 import SearchResults from './SearchResults'
 
 export default {
@@ -38,7 +38,12 @@ export default {
   },
   methods: {
     async onSubmit() {
-      this.results = await searchDrinkByName(this.search)
+      this.results = []
+
+      const nameSearchResults = await searchDrinkByName(this.search)
+      const ingredientSearchResults = await searchDrinkByIngredient(this.search)
+
+      this.results = [...nameSearchResults, ...ingredientSearchResults]
     }
   }
 }
