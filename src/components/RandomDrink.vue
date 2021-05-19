@@ -5,8 +5,9 @@
     </h3>
     <Card
       :id="randomDrink.idDrink"
-      :image="randomDrink.strDrinkThumb"
       :title="randomDrink.strDrink"
+      :subtitle="randomDrink.strAlcoholic"
+      :image="randomDrink.strDrinkThumb"
       :date="randomDrink.dateModified"
     />
     <div class="mt-4">

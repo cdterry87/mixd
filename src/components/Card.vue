@@ -6,10 +6,13 @@
           <img :src="image" :alt="title" />
         </figure>
       </div>
-      <div v-if="title" class="card-content">
+      <div class="card-content">
         <div class="media">
           <div class="media-content">
             <p class="title is-4 has-text-centered">{{ title }}</p>
+            <p v-if="subtitle" class="subtitle is-7 has-text-centered">
+              ({{ subtitle }})
+            </p>
           </div>
         </div>
       </div>
@@ -25,11 +28,15 @@ export default {
       type: String,
       required: true
     },
+    title: {
+      type: String,
+      required: true
+    },
     image: {
       type: String,
       default: ''
     },
-    title: {
+    subtitle: {
       type: String,
       default: ''
     },
