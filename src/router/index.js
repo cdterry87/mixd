@@ -17,10 +17,9 @@ const routes = [
     props: true
   },
   {
-    path: '/ingredient/:id',
-    name: 'Ingredient',
-    component: () => import('../views/Ingredient'),
-    props: true
+    path: '/favorites',
+    name: 'Favorites',
+    component: () => import('../views/Favorites')
   },
   {
     path: '*',
