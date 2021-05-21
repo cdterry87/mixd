@@ -9,10 +9,24 @@
           :title="drink.strDrink"
         />
         <div class="mt-4">
-          <button class="button is-medium is-info is-outlined is-fullwidth">
+          <button
+            v-if="!isFavorite"
+            class="button is-medium is-info is-outlined is-fullwidth"
+            @click="onAddFavorite"
+          >
             <span>Add Favorite</span>
             <span class="icon">
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star" />
+            </span>
+          </button>
+          <button
+            v-else
+            class="button is-medium is-danger is-outlined is-fullwidth"
+            @click="onRemoveFavorite"
+          >
+            <span>Remove Favorite</span>
+            <span class="icon">
+              <i class="fas fa-minus-circle" />
             </span>
           </button>
         </div>
@@ -52,6 +66,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('favorites')
+
 import { getDrinkById } from '../services/drinks'
 import Card from '../components/Card'
 
@@ -77,6 +94,7 @@ export default {
     this.isLoading = false
   },
   computed: {
+    ...mapState(['favorites']),
     ingredients() {
       const ingredients = []
 
@@ -96,6 +114,24 @@ export default {
     tags() {
       if (!this.drink.strTags) return
       return this.drink.strTags.split(',')
+    },
+    isFavorite() {
+      const favoriteIndex = this.favorites.findIndex(favorite => {
+        return favorite.id === this.id
+      })
+      if (favoriteIndex > -1) {
+        return true
+      }
+      return false
+    }
+  },
+  methods: {
+    ...mapActions(['addFavorite', 'removeFavorite']),
+    onAddFavorite() {
+      this.addFavorite(this.drink)
+    },
+    onRemoveFavorite() {
+      this.removeFavorite(this.id)
     }
   }
 }
