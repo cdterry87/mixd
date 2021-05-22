@@ -9,26 +9,7 @@
           :title="drink.strDrink"
         />
         <div class="mt-4">
-          <button
-            v-if="!isFavorite"
-            class="button is-medium is-info is-outlined is-fullwidth"
-            @click="onAddFavorite"
-          >
-            <span>Add Favorite</span>
-            <span class="icon">
-              <i class="fas fa-star" />
-            </span>
-          </button>
-          <button
-            v-else
-            class="button is-medium is-danger is-outlined is-fullwidth"
-            @click="onRemoveFavorite"
-          >
-            <span>Remove Favorite</span>
-            <span class="icon">
-              <i class="fas fa-minus-circle" />
-            </span>
-          </button>
+          <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />
         </div>
       </div>
       <div class="column is-two-thirds">
@@ -70,11 +51,13 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('favorites')
 
 import { getDrinkById } from '../services/drinks'
+import Button from '../components/Button'
 import Card from '../components/Card'
 
 export default {
   name: 'Drink',
   components: {
+    Button,
     Card
   },
   props: {
@@ -115,6 +98,13 @@ export default {
       if (!this.drink.strTags) return
       return this.drink.strTags.split(',')
     },
+    favoriteButton() {
+      return {
+        classes: this.isFavorite ? 'is-danger' : 'is-info',
+        label: this.isFavorite ? 'Remove Favorite' : 'Add Favorite',
+        icon: this.isFavorite ? 'fas fa-minus-circle' : 'fas fa-star'
+      }
+    },
     isFavorite() {
       const favoriteIndex = this.favorites.findIndex(favorite => {
         return favorite.id === this.id
@@ -127,11 +117,10 @@ export default {
   },
   methods: {
     ...mapActions(['addFavorite', 'removeFavorite']),
-    onAddFavorite() {
-      this.addFavorite(this.drink)
-    },
-    onRemoveFavorite() {
-      this.removeFavorite(this.id)
+    onFavoriteClick() {
+      this.isFavorite
+        ? this.removeFavorite(this.id)
+        : this.addFavorite(this.drink)
     }
   }
 }

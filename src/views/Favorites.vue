@@ -4,10 +4,10 @@
     <div class="columns is-multiline">
       <div
         v-if="!favorites.length"
-        class="column is-half is-offset-one-quarter has-text-centered"
+        class="column is-8 is-offset-2 has-text-centered"
       >
-        <p>Sorry! There is nothing to display.</p>
-        <p>You have not added any favorites yet.</p>
+        <p class="title is-size-4">Sorry, there is nothing to display.</p>
+        <p class="subtitle is-size-5">You have not added any favorites yet.</p>
       </div>
       <div
         v-else

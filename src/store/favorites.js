@@ -21,6 +21,7 @@ const actions = {
     commit(GET_FAVORITES, favorites)
   },
   addFavorite({ commit }, { idDrink, strDrink, strAlcoholic, strDrinkThumb }) {
+    console.log('addFavorite')
     commit(ADD_FAVORITE, {
       id: idDrink,
       title: strDrink,
@@ -31,6 +32,7 @@ const actions = {
     commit(SAVE_FAVORITES)
   },
   removeFavorite({ commit }, id) {
+    console.log('removeFavorite')
     commit(REMOVE_FAVORITE, id)
     commit(SAVE_FAVORITES)
   }
@@ -57,6 +59,8 @@ const mutations = {
       return favorite.id === id
     })
     if (favoriteIndex > -1) {
+      console.log('removing', favoriteIndex)
+
       state.favorites.splice(favoriteIndex, 1)
     }
   }

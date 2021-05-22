@@ -12,7 +12,7 @@
           />
         </div>
         <div class="control">
-          <a class="button is-info is-medium"> Search </a>
+          <button class="button is-info is-medium">Search</button>
         </div>
       </div>
     </form>

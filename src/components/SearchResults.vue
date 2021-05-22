@@ -4,9 +4,7 @@
       <SearchResultsItem
         v-for="(result, index) in results"
         :key="index"
-        :id="result.idDrink"
-        :title="result.strDrink"
-        :image="result.strDrinkThumb"
+        :drink="result"
       />
     </div>
     <div v-else class="mt-5 has-text-centered">
@@ -14,12 +12,12 @@
         <i class="fas fa-search"></i>
       </div>
       <div v-if="hasSearchBeenPerformed">
-        <p class="title is-size-3">Sorry, your search returned no results.</p>
-        <p class="subtitle is-size-4">Please try another search.</p>
+        <p class="title is-size-4">Sorry, your search returned no results.</p>
+        <p class="subtitle is-size-5">Please try another search.</p>
       </div>
       <div v-else>
-        <p class="title is-size-3">Sorry, there are no results to display.</p>
-        <p class="subtitle is-size-4">
+        <p class="title is-size-4">Sorry, there are no results to display.</p>
+        <p class="subtitle is-size-5">
           Use the search above to search for your favorite drinks!
         </p>
       </div>
