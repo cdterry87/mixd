@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h2 class="title is-2 has-text-centered">Your favorite drinks!</h2>
     <div class="columns is-multiline">
       <div
         v-if="!favorites.length"

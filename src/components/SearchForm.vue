@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h2 class="title is-4 has-text-centered">Search for your favorite drink</h2>
     <form @submit.prevent="onSubmit">
       <div class="field has-addons">
         <div class="control is-expanded">
           <input
-            class="input"
+            class="input is-medium"
             type="search"
             name="search"
             v-model="search"
@@ -13,11 +12,14 @@
           />
         </div>
         <div class="control">
-          <a class="button is-info"> Search </a>
+          <a class="button is-info is-medium"> Search </a>
         </div>
       </div>
     </form>
-    <SearchResults :results="results" />
+    <SearchResults
+      :results="results"
+      :has-search-been-performed="hasSearchBeenPerformed"
+    />
   </div>
 </template>
 
@@ -33,12 +35,14 @@ export default {
   data() {
     return {
       search: '',
-      results: []
+      results: [],
+      hasSearchBeenPerformed: false
     }
   },
   methods: {
     async onSubmit() {
       this.results = []
+      this.hasSearchBeenPerformed = true
 
       const nameSearchResults = await searchDrinkByName(this.search)
       const ingredientSearchResults = await searchDrinkByIngredient(this.search)

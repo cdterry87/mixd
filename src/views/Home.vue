@@ -5,6 +5,15 @@
         <SearchForm />
       </div>
       <div class="column is-one-third">
+        <router-link
+          class="button is-success is-medium is-fullwidth mb-5"
+          to="favorites"
+        >
+          <span>My Favorites</span>
+          <span class="icon">
+            <i class="fas fa-star"></i>
+          </span>
+        </router-link>
         <RandomDrink />
       </div>
     </div>
