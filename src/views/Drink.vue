@@ -7,6 +7,7 @@
           :id="id"
           :image="drink.strDrinkThumb"
           :title="drink.strDrink"
+          :subtitle="drink.strAlcoholic"
         />
         <div class="mt-4">
           <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />

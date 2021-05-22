@@ -20,14 +20,19 @@
           :title="favorite.title"
           :subtitle="favorite.subtitle"
           :image="favorite.image"
-          :date="favorite.date"
         />
+        <p class="mt-3 has-text-centered">
+          <small class="is-small">
+            Added {{ getFormattedDate(favorite.date) }}
+          </small>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getDateFromToday } from '../utils'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('favorites')
 
@@ -40,6 +45,11 @@ export default {
   },
   computed: {
     ...mapState(['favorites'])
+  },
+  methods: {
+    getFormattedDate(date) {
+      return getDateFromToday(date)
+    }
   }
 }
 </script>
