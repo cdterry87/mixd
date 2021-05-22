@@ -11,6 +11,15 @@
         />
         <div class="mt-4">
           <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />
+          <router-link
+            class="mt-3 button is-success is-medium is-fullwidth mb-5"
+            to="/favorites"
+          >
+            <span>My Favorites</span>
+            <span class="icon">
+              <i class="fas fa-star"></i>
+            </span>
+          </router-link>
         </div>
       </div>
       <div class="column is-two-thirds">
@@ -103,7 +112,7 @@ export default {
       return {
         classes: this.isFavorite ? 'is-danger' : 'is-info',
         label: this.isFavorite ? 'Remove Favorite' : 'Add Favorite',
-        icon: this.isFavorite ? 'fas fa-minus-circle' : 'fas fa-star'
+        icon: this.isFavorite ? 'fas fa-minus-circle' : 'fas fa-plus-circle'
       }
     },
     isFavorite() {

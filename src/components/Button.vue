@@ -4,7 +4,7 @@
     :class="classes"
   >
     <span>{{ label }}</span>
-    <span v-if="icon" class="icon">
+    <span v-if="icon" class="icon" :key="label">
       <i :class="icon" />
     </span>
   </button>
