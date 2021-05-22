@@ -8,7 +8,9 @@
       >
         <div class="navbar-brand">
           <router-link to="/">
-            <h1 class="title is-1"><i class="fas fa-cocktail"></i> MIXD</h1>
+            <h1 class="title is-1">
+              M<i class="fas fa-glass-martini-alt"></i>XD
+            </h1>
           </router-link>
         </div>
       </nav>
