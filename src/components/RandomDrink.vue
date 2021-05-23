@@ -11,15 +11,7 @@
       :date="randomDrink.dateModified"
     />
     <div class="mt-4">
-      <button
-        class="button is-medium is-info is-outlined is-fullwidth"
-        @click="onClick"
-      >
-        <span>Refresh</span>
-        <span class="icon">
-          <i class="fas fa-sync"></i>
-        </span>
-      </button>
+      <Button v-bind="refreshButton" @click="onRefreshClick" />
     </div>
   </div>
 </template>
@@ -41,8 +33,17 @@ export default {
   async created() {
     this.randomDrink = await getRandomDrink()
   },
+  computed: {
+    refreshButton() {
+      return {
+        classes: 'is-info',
+        label: 'Refresh',
+        icon: 'fas fa-sync'
+      }
+    }
+  },
   methods: {
-    async onClick() {
+    async onRefreshClick() {
       this.randomDrink = await getRandomDrink()
     }
   }
