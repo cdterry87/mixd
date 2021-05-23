@@ -7,7 +7,7 @@
             class="input is-medium"
             type="search"
             name="search"
-            v-model="search"
+            v-model="criteria"
             placeholder="Search for your favorite drink!"
           />
         </div>
@@ -24,8 +24,10 @@
 </template>
 
 <script>
-import { searchDrinkByName, searchDrinkByIngredient } from '../services/drinks'
+import { createNamespacedHelpers } from 'vuex'
 import SearchResults from './SearchResults'
+
+const { mapState, mapActions } = createNamespacedHelpers('search')
 
 export default {
   name: 'SearchForm',
@@ -34,20 +36,18 @@ export default {
   },
   data() {
     return {
-      search: '',
-      results: [],
+      criteria: '',
       hasSearchBeenPerformed: false
     }
   },
+  computed: {
+    ...mapState(['results'])
+  },
   methods: {
+    ...mapActions(['runSearch']),
     async onSubmit() {
-      this.results = []
       this.hasSearchBeenPerformed = true
-
-      const nameSearchResults = await searchDrinkByName(this.search)
-      const ingredientSearchResults = await searchDrinkByIngredient(this.search)
-
-      this.results = [...nameSearchResults, ...ingredientSearchResults]
+      await this.runSearch(this.criteria)
     }
   }
 }
