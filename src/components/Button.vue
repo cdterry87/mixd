@@ -5,8 +5,8 @@
     :class="classes"
     class="button is-medium is-fullwidth"
   >
-    <span>{{ label }}</span>
-    <span v-if="icon" class="icon" :key="label">
+    <span data-testid="label">{{ label }}</span>
+    <span v-if="icon" class="icon" :key="label" data-testid="icon">
       <i :class="icon" />
     </span>
   </component>
