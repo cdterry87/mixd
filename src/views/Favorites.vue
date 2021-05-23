@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h2 class="title is-2 has-text-centered">Your favorite drinks!</h2>
+    <h2 class="title is-2 has-text-centered">
+      Your {{ totalFavorites }} favorite drinks!
+    </h2>
     <div class="columns is-multiline">
       <div
         v-if="!favorites.length"
@@ -34,7 +36,7 @@
 <script>
 import { getDateFromToday } from '../utils'
 import { createNamespacedHelpers } from 'vuex'
-const { mapState } = createNamespacedHelpers('favorites')
+const { mapState, mapGetters } = createNamespacedHelpers('favorites')
 
 import Card from '../components/Card'
 
@@ -44,7 +46,8 @@ export default {
     Card
   },
   computed: {
-    ...mapState(['favorites'])
+    ...mapState(['favorites']),
+    ...mapGetters(['totalFavorites'])
   },
   methods: {
     getFormattedDate(date) {
