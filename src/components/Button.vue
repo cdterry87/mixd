@@ -1,10 +1,15 @@
 <template>
-  <button class="button is-medium is-info is-fullwidth" :class="classes">
+  <component
+    :is="link ? 'router-link' : 'button'"
+    :to="link ? link : undefined"
+    :class="classes"
+    class="button is-medium is-fullwidth"
+  >
     <span>{{ label }}</span>
     <span v-if="icon" class="icon" :key="label">
       <i :class="icon" />
     </span>
-  </button>
+  </component>
 </template>
 
 <script>
@@ -14,6 +19,10 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    link: {
+      type: String,
+      default: ''
     },
     classes: {
       type: String,

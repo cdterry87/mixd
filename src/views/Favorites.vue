@@ -23,7 +23,7 @@
           :subtitle="favorite.subtitle"
           :image="favorite.image"
         />
-        <p class="mt-3 has-text-centered">
+        <p class="mt-4 has-text-centered">
           <small class="is-small">
             Added {{ getFormattedDate(favorite.date) }}
           </small>

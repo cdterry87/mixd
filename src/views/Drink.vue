@@ -11,15 +11,7 @@
         />
         <div class="mt-4">
           <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />
-          <router-link
-            class="mt-3 button is-success is-medium is-fullwidth mb-5"
-            to="/favorites"
-          >
-            <span>My Favorites</span>
-            <span class="icon">
-              <i class="fas fa-star"></i>
-            </span>
-          </router-link>
+          <Button v-bind="favoritesLink" />
         </div>
       </div>
       <div class="column is-two-thirds">
@@ -107,6 +99,14 @@ export default {
     tags() {
       if (!this.drink.strTags) return
       return this.drink.strTags.split(',')
+    },
+    favoritesLink() {
+      return {
+        label: 'Favorites',
+        link: '/favorites',
+        classes: 'is-success mt-4',
+        icon: 'fas fa-star'
+      }
     },
     favoriteButton() {
       return {
