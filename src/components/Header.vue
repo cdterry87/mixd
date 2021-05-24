@@ -1,11 +1,7 @@
 <template>
   <div class="header">
     <div class="container">
-      <nav
-        class="navbar is-transparent"
-        role="navigation"
-        aria-label="main navigation"
-      >
+      <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <router-link to="/">
             <h1 class="title is-1">
@@ -20,11 +16,6 @@
 
 <script>
 export default {
-  name: 'Header',
-  data() {
-    return {
-      isMenuActive: false
-    }
-  }
+  name: 'Header'
 }
 </script>
