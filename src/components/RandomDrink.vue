@@ -11,18 +11,20 @@
       :date="randomDrink.dateModified"
     />
     <div class="mt-4">
-      <Button v-bind="refreshButton" @click="onRefreshClick" />
+      <Button v-bind="refreshButton" @click.native="onRefreshClick" />
     </div>
   </div>
 </template>
 
 <script>
 import { getRandomDrink } from '../services/drinks'
+import Button from './Button'
 import Card from './Card'
 
 export default {
   name: 'RandomDrink',
   components: {
+    Button,
     Card
   },
   data() {
@@ -36,7 +38,7 @@ export default {
   computed: {
     refreshButton() {
       return {
-        classes: 'is-info',
+        classes: 'is-warning',
         label: 'Refresh',
         icon: 'fas fa-sync'
       }
