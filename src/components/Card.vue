@@ -39,18 +39,11 @@ export default {
     subtitle: {
       type: String,
       default: ''
-    },
-    date: {
-      type: String,
-      default: ''
     }
   },
   computed: {
     route() {
       return `/drink/${this.id}`
-    },
-    formattedDate() {
-      return this.date
     }
   }
 }
