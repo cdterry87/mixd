@@ -1,51 +1,49 @@
 <template>
-  <div class="container">
-    <div class="columns">
-      <div class="column is-one-third">
-        <Card
-          v-if="!isLoading"
-          :id="id"
-          :image="drink.strDrinkThumb"
-          :title="drink.strDrink"
-          :subtitle="drink.strAlcoholic"
-        />
-        <div class="mt-4">
-          <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />
-          <Button v-bind="favoritesLink" />
+  <Layout :is-reversed="true">
+    <template #content>
+      <div v-if="ingredients">
+        <h3 class="title is-5">Ingredients:</h3>
+        <ul class="mb-4">
+          <li v-for="(ingredient, index) in ingredients" :key="index">
+            {{ ingredient.measurement }} {{ ingredient.name }}
+          </li>
+        </ul>
+      </div>
+      <div v-if="drink.strInstructions">
+        <h3 class="title is-5">Instructions:</h3>
+        <p class="mb-4">
+          {{ drink.strInstructions }}
+        </p>
+      </div>
+      <div v-if="drink.strGlass">
+        <h3 class="title is-5">Recommended Glassware:</h3>
+        <p class="mb-4">
+          {{ drink.strGlass }}
+        </p>
+      </div>
+      <div v-if="tags">
+        <h3 class="title is-5">Tags:</h3>
+        <div class="tags are-medium mb-4">
+          <span v-for="(tag, index) in tags" :key="index" class="tag is-info">
+            {{ tag }}
+          </span>
         </div>
       </div>
-      <div class="column is-two-thirds">
-        <div v-if="ingredients">
-          <h3 class="title is-5">Ingredients:</h3>
-          <ul class="mb-4">
-            <li v-for="(ingredient, index) in ingredients" :key="index">
-              {{ ingredient.measurement }} {{ ingredient.name }}
-            </li>
-          </ul>
-        </div>
-        <div v-if="drink.strInstructions">
-          <h3 class="title is-5">Instructions:</h3>
-          <p class="mb-4">
-            {{ drink.strInstructions }}
-          </p>
-        </div>
-        <div v-if="drink.strGlass">
-          <h3 class="title is-5">Recommended Glassware:</h3>
-          <p class="mb-4">
-            {{ drink.strGlass }}
-          </p>
-        </div>
-        <div v-if="tags">
-          <h3 class="title is-5">Tags:</h3>
-          <div class="tags are-medium mb-4">
-            <span v-for="(tag, index) in tags" :key="index" class="tag is-info">
-              {{ tag }}
-            </span>
-          </div>
-        </div>
+    </template>
+    <template #side>
+      <Card
+        v-if="!isLoading"
+        :id="id"
+        :image="drink.strDrinkThumb"
+        :title="drink.strDrink"
+        :subtitle="drink.strAlcoholic"
+      />
+      <div class="mt-4">
+        <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />
+        <Button v-bind="favoritesLink" />
       </div>
-    </div>
-  </div>
+    </template>
+  </Layout>
 </template>
 
 <script>
@@ -55,12 +53,14 @@ const { mapState, mapActions } = createNamespacedHelpers('favorites')
 import { getDrinkById } from '../services/drinks'
 import Button from '../components/Button'
 import Card from '../components/Card'
+import Layout from '../components/Layout'
 
 export default {
   name: 'Drink',
   components: {
     Button,
-    Card
+    Card,
+    Layout
   },
   props: {
     id: {
