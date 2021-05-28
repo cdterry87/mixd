@@ -1,9 +1,13 @@
 <template>
   <div class="footer mt-6">
     <div class="container">
-      <ul class="footer-links has-text-centered">
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/favorites">Favorites</router-link></li>
+      <ul class="has-text-centered">
+        <li class="footer-link">
+          <router-link to="/">Home</router-link>
+        </li>
+        <li class="footer-link">
+          <router-link to="/favorites">Favorites</router-link>
+        </li>
       </ul>
       <div class="columns mt-5 has-text-centered">
         <div class="column is-half">
@@ -29,3 +33,10 @@ export default {
   name: 'Footer'
 }
 </script>
+
+<style lang="scss" scoped>
+.footer-link {
+  display: inline-block;
+  margin: 0 25px;
+}
+</style>
