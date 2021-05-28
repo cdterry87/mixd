@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container px-5">
     <div
       class="columns"
       :class="{ 'is-flex-direction-row-reverse': isReversed }"
     >
-      <div class="column is-two-thirds">
+      <div class="column" :class="{ 'is-two-thirds': hasSide }">
         <slot name="content" />
       </div>
-      <div class="column is-one-third">
+      <div class="column is-one-third" v-if="hasSide">
         <slot name="side" />
       </div>
     </div>
@@ -21,6 +21,11 @@ export default {
     isReversed: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    hasSide() {
+      return !!this.$slots.side
     }
   }
 }
