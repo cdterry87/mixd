@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer mt-6">
     <div class="container">
       <ul class="footer-links has-text-centered">
         <li><router-link to="/">Home</router-link></li>

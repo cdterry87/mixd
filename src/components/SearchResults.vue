@@ -1,5 +1,5 @@
 <template>
-  <div class="search-results">
+  <div class="search-results my-5">
     <div v-if="results.length">
       <SearchResultsItem
         v-for="(result, index) in results"
