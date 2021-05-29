@@ -7,12 +7,12 @@ const state = {
 
 const actions = {
   async runSearch({ commit, dispatch }, criteria) {
-    const nameSearchResults = await cocktailDbService.searchDrinkByName(
+    const searchByNameResults = await cocktailDbService.searchDrinkByName(
       criteria
     )
-    const ingredientSearchResults =
+    const searchByIngredientResults =
       await cocktailDbService.searchDrinkByIngredient(criteria)
-    const results = [...nameSearchResults, ...ingredientSearchResults]
+    const results = [...searchByNameResults, ...searchByIngredientResults]
 
     commit(SET_SEARCH_RESULTS, results)
     dispatch('getSearchResults')
