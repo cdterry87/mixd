@@ -50,7 +50,7 @@
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('favorites')
 
-import { getDrinkById } from '../services/drinks'
+import { cocktailDbService } from '../services/cocktail-db'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import Layout from '../components/Layout'
@@ -75,7 +75,7 @@ export default {
     }
   },
   async created() {
-    this.drink = await getDrinkById(this.id)
+    this.drink = await cocktailDbService.getDrinkById(this.id)
     this.isLoading = false
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-  <Layout class="header">
+  <Layout class="header my-2">
     <template #content>
       <div class="container px-5">
         <nav class="navbar" role="navigation" aria-label="main navigation">

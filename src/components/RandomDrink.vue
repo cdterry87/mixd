@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getRandomDrink } from '../services/drinks'
+import { cocktailDbService } from '../services/cocktail-db'
 import Button from './Button'
 import Card from './Card'
 
@@ -32,8 +32,8 @@ export default {
       randomDrink: {}
     }
   },
-  async created() {
-    this.randomDrink = await getRandomDrink()
+  created() {
+    this.getRandomDrink()
   },
   computed: {
     refreshButton() {
@@ -45,8 +45,11 @@ export default {
     }
   },
   methods: {
-    async onRefreshClick() {
-      this.randomDrink = await getRandomDrink()
+    async getRandomDrink() {
+      this.randomDrink = await cocktailDbService.getRandomDrink()
+    },
+    onRefreshClick() {
+      this.getRandomDrink()
     }
   }
 }
