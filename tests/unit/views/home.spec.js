@@ -4,11 +4,12 @@ import Home from '@/views/Home'
 import Button from '@/components/Button'
 import RandomDrink from '@/components/RandomDrink'
 import SearchForm from '@/components/SearchForm'
-import results from '@/mocks/search'
-import favorites from '@/mocks/favorites'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+
+const results = require('@/mocks/search')
+const favorites = require('@/mocks/favorites')
 
 const store = new Vuex.Store({
   modules: {

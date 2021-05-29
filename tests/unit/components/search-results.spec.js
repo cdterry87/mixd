@@ -1,9 +1,29 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import Vuex from 'vuex'
 import SearchResults from '@/components/SearchResults'
 import SearchResultsItem from '@/components/SearchResultsItem'
 
-const results = require('@/mocks/search.json')
+const results = require('@/mocks/search')
+const favorites = require('@/mocks/favorites')
 const localVue = createLocalVue()
+localVue.use(Vuex)
+
+const store = new Vuex.Store({
+  modules: {
+    search: {
+      namespaced: true,
+      state: {
+        results
+      }
+    },
+    favorites: {
+      namespaced: true,
+      state: {
+        favorites
+      }
+    }
+  }
+})
 
 describe('SearchResults', () => {
   let wrapper
@@ -11,6 +31,7 @@ describe('SearchResults', () => {
   beforeEach(() => {
     wrapper = mount(SearchResults, {
       localVue,
+      store,
       stubs: {
         RouterLink: RouterLinkStub
       }
@@ -29,7 +50,7 @@ describe('SearchResults', () => {
     await wrapper.setProps({
       hasSearchBeenPerformed: true
     })
-    expect(wrapper.find('data-testid="search-empty"').exists()).toBeTruthy()
+    expect(wrapper.find('[data-testid="search-empty"]').exists()).toBeTruthy()
   })
 
   it('renders results list correctly', async () => {
