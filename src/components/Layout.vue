@@ -4,10 +4,14 @@
       class="columns"
       :class="{ 'is-flex-direction-row-reverse': isReversed }"
     >
-      <div class="column" :class="{ 'is-two-thirds': hasSide }">
+      <div
+        class="column"
+        :class="{ 'is-two-thirds': hasSide }"
+        data-testid="content"
+      >
         <slot name="content" />
       </div>
-      <div class="column is-one-third" v-if="hasSide">
+      <div class="column is-one-third" v-if="hasSide" data-testid="side">
         <slot name="side" />
       </div>
     </div>

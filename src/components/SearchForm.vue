@@ -7,7 +7,7 @@
             class="input is-medium"
             type="search"
             name="search"
-            v-model="criteria"
+            v-model="search"
             placeholder="Search for your favorite drink!"
           />
         </div>
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      criteria: '',
+      search: '',
       hasSearchBeenPerformed: false
     }
   },
@@ -47,7 +47,7 @@ export default {
     ...mapActions(['runSearch']),
     async onSubmit() {
       this.hasSearchBeenPerformed = true
-      await this.runSearch(this.criteria)
+      await this.runSearch(this.search)
     }
   }
 }
