@@ -8,7 +8,6 @@
       :title="randomDrink.strDrink"
       :subtitle="randomDrink.strAlcoholic"
       :image="randomDrink.strDrinkThumb"
-      :date="randomDrink.dateModified"
     />
     <div class="mt-4">
       <Button v-bind="refreshButton" @click.native="onRefreshClick" />
