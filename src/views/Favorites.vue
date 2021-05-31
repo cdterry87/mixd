@@ -2,7 +2,8 @@
   <Layout>
     <template #content>
       <h2 class="title is-2 has-text-centered">
-        Your {{ totalFavorites }} favorite drinks!
+        Your <span data-testid="total-favorites">{{ totalFavorites }}</span>
+        favorite drinks!
       </h2>
       <div class="columns is-multiline">
         <div
@@ -28,7 +29,7 @@
           />
           <p class="mt-4 has-text-centered">
             <small class="is-small">
-              Added {{ getFormattedDate(favorite.date) }}
+              Added {{ getDateFromToday(favorite.date) }}
             </small>
           </p>
         </div>
@@ -56,9 +57,7 @@ export default {
     ...mapGetters(['totalFavorites'])
   },
   methods: {
-    getFormattedDate(date) {
-      return getDateFromToday(date)
-    }
+    getDateFromToday
   }
 }
 </script>
