@@ -3,7 +3,7 @@ import Layout from '@/components/Layout'
 
 const localVue = createLocalVue()
 
-describe('Button', () => {
+describe('Layout', () => {
   it('renders correctly', () => {
     const wrapper = mount(Layout, {
       localVue,
