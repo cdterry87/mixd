@@ -41,9 +41,9 @@ export default {
       default: ''
     }
   },
-  computed: {
-    route() {
-      return `/drink/${this.id}`
+  data() {
+    return {
+      route: `/drink/${this.id}`
     }
   }
 }

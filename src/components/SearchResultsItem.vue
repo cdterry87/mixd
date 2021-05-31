@@ -2,7 +2,7 @@
   <article class="media">
     <figure class="media-left">
       <p class="image is-64x64">
-        <img :src="drink.strDrinkThumb" />
+        <img :src="drink.strDrinkThumb" :alt="drink.strDrink" />
       </p>
     </figure>
     <div class="media-content">
@@ -33,6 +33,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      route: `/drink/${this.drink.idDrink}`
+    }
+  },
   computed: {
     ...mapState(['favorites']),
     isFavorite() {
@@ -40,9 +45,6 @@ export default {
         return favorite.id === this.drink.idDrink
       })
       return favoriteIndex > -1 ? true : false
-    },
-    route() {
-      return `/drink/${this.drink.idDrink}`
     }
   }
 }
