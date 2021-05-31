@@ -3,7 +3,7 @@
     :is="link ? 'router-link' : 'button'"
     :to="link ? link : undefined"
     :class="classes"
-    class="button is-medium is-fullwidth"
+    class="button is-medium"
   >
     <span data-testid="label">{{ label }}</span>
     <span v-if="icon" class="icon" :key="label" data-testid="icon">
