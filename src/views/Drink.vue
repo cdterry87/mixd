@@ -104,13 +104,15 @@ export default {
       return {
         label: 'Favorites',
         link: '/favorites',
-        classes: 'is-success is-fullwidth mt-4',
+        classes: 'is-success is-fullwidth is-medium mt-4',
         icon: 'fas fa-star'
       }
     },
     favoriteButton() {
       return {
-        classes: `is-fullwidth ${this.isFavorite ? 'is-danger' : 'is-info'}`,
+        classes: `is-fullwidth is-medium ${
+          this.isFavorite ? 'is-danger' : 'is-info'
+        }`,
         label: this.isFavorite ? 'Remove Favorite' : 'Add Favorite',
         icon: this.isFavorite ? 'fas fa-minus-circle' : 'fas fa-plus-circle'
       }

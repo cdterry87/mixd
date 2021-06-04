@@ -29,7 +29,7 @@ export default {
       return {
         label: 'Favorites',
         link: '/favorites',
-        classes: 'is-success is-fullwidth mb-4',
+        classes: 'is-success is-fullwidth is-medium mb-4',
         icon: 'fas fa-star'
       }
     }

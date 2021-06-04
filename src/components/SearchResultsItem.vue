@@ -7,12 +7,10 @@
     </figure>
     <div class="media-content">
       <div class="content">
-        <h3 class="title is-5">{{ drink.strDrink }}</h3>
+        <h3 class="title is-5">{{ drink.strDrink | uppercase }}</h3>
       </div>
       <nav class="level is-mobile">
-        <router-link :to="route">
-          <span class="button is-info is-small">View Drink</span>
-        </router-link>
+        <Button v-bind="viewButton" />
       </nav>
     </div>
     <div class="media-right" @click="onFavoriteClick">
@@ -28,17 +26,17 @@
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('favorites')
 
+import Button from './Button'
+
 export default {
   name: 'SearchResultsItem',
+  components: {
+    Button
+  },
   props: {
     drink: {
       type: Object,
       required: true
-    }
-  },
-  data() {
-    return {
-      route: `/drink/${this.drink.idDrink}`
     }
   },
   computed: {
@@ -48,6 +46,13 @@ export default {
         return favorite.id === this.drink.idDrink
       })
       return favoriteIndex > -1 ? true : false
+    },
+    viewButton() {
+      return {
+        classes: 'button is-info is-small',
+        label: 'View Drink',
+        link: `/drink/${this.drink.idDrink}`
+      }
     }
   },
   methods: {

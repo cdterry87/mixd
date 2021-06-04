@@ -3,9 +3,9 @@
     :is="link ? 'router-link' : 'button'"
     :to="link ? link : undefined"
     :class="classes"
-    class="button is-medium"
+    class="button"
   >
-    <span data-testid="label">{{ label }}</span>
+    <span data-testid="label">{{ label | uppercase }}</span>
     <span v-if="icon" class="icon" :key="label" data-testid="icon">
       <i :class="icon" />
     </span>

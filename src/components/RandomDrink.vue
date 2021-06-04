@@ -37,7 +37,7 @@ export default {
   computed: {
     refreshButton() {
       return {
-        classes: 'is-warning is-fullwidth',
+        classes: 'is-warning is-fullwidth is-medium',
         label: 'Refresh',
         icon: 'fas fa-sync'
       }
