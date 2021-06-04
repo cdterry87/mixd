@@ -17,9 +17,14 @@
         </div>
       </div>
     </form>
+    <div v-if="message" class="notification is-warning is-light my-2">
+      <button class="delete" @click="message = ''"></button>
+      <p v-html="message" />
+    </div>
     <SearchResults
       :results="results"
       :has-search-been-performed="hasSearchBeenPerformed"
+      @favoriteClick="displayMessage"
     />
   </div>
 </template>
@@ -38,6 +43,7 @@ export default {
   data() {
     return {
       search: '',
+      message: '',
       hasSearchBeenPerformed: false
     }
   },
@@ -49,6 +55,11 @@ export default {
     async onSubmit() {
       this.hasSearchBeenPerformed = true
       await this.runSearch(this.search)
+    },
+    displayMessage(data) {
+      const { name, isFavorite } = data
+      const status = isFavorite ? 'added to' : 'removed from'
+      this.message = `<strong>${name}</strong> was <strong>${status}</strong> your favorites!`
     }
   }
 }

@@ -66,6 +66,11 @@ export default {
       this.isFavorite
         ? this.removeFavorite(this.drink.idDrink)
         : this.addFavorite(this.drink)
+
+      this.$emit('favoriteClick', {
+        name: this.drink.strDrink,
+        isFavorite: this.isFavorite
+      })
     }
   }
 }

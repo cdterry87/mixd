@@ -5,6 +5,7 @@
         v-for="(result, index) in results"
         :key="index"
         :drink="result"
+        @favoriteClick="onFavoriteClick"
       />
     </div>
     <div v-else class="mt-5 has-text-centered">
@@ -41,6 +42,11 @@ export default {
     hasSearchBeenPerformed: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    onFavoriteClick(data) {
+      this.$emit('favoriteClick', data)
     }
   }
 }
