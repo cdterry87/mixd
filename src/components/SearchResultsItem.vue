@@ -13,11 +13,16 @@
         <Button v-bind="viewButton" />
       </nav>
     </div>
-    <div class="media-right" @click="onFavoriteClick">
-      <i
-        :class="{ fas: isFavorite, far: !isFavorite }"
-        class="fa-star is-clickable"
-      ></i>
+    <div
+      v-if="isFavorite"
+      key="fas"
+      class="media-right"
+      @click="onFavoriteClick"
+    >
+      <i class="fas fa-star is-clickable"></i>
+    </div>
+    <div v-else key="far" class="media-right" @click="onFavoriteClick">
+      <i class="far fa-star is-clickable"></i>
     </div>
   </article>
 </template>
@@ -59,10 +64,8 @@ export default {
     ...mapActions(['addFavorite', 'removeFavorite']),
     onFavoriteClick() {
       this.isFavorite
-        ? this.removeFavorite(this.id)
+        ? this.removeFavorite(this.drink.idDrink)
         : this.addFavorite(this.drink)
-
-      this.$emit('onAddFavorite', this.drink)
     }
   }
 }
