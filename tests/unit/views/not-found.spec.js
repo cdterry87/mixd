@@ -2,6 +2,7 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import NotFound from '@/views/NotFound'
 import Button from '@/components/Button'
 import RandomDrink from '@/components/RandomDrink'
+import '@/filters/uppercase'
 
 const localVue = createLocalVue()
 

@@ -1,6 +1,7 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import SearchResultsItem from '@/components/SearchResultsItem'
+import '@/filters/uppercase'
 
 const favorites = require('@/mocks/favorites.json')
 const drinks = require('@/mocks/search.json')

@@ -2,6 +2,8 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import SearchForm from '@/components/SearchForm'
 import SearchResults from '@/components/SearchResults'
+import '@/directives/focus'
+import '@/filters/uppercase'
 
 const results = require('@/mocks/search')
 const favorites = require('@/mocks/favorites')

@@ -1,5 +1,6 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Card from '@/components/Card'
+import '@/filters/uppercase'
 
 const localVue = createLocalVue()
 

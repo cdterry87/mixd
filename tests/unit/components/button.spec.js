@@ -1,5 +1,6 @@
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Button from '@/components/Button'
+import '@/filters/uppercase'
 
 const localVue = createLocalVue()
 
@@ -23,7 +24,7 @@ describe('Button', () => {
   })
 
   it('renders correctly', () => {
-    expect(wrapper.find('[data-testid="label"]').text()).toBe('Example')
+    expect(wrapper.find('[data-testid="label"]').text()).toBe('EXAMPLE')
   })
 
   it('renders with an icon', async () => {

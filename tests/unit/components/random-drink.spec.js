@@ -2,6 +2,7 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import RandomDrink from '@/components/RandomDrink'
 import Button from '@/components/Button'
 import Card from '@/components/Card'
+import '@/filters/uppercase'
 
 const drinks = require('@/mocks/search.json')
 

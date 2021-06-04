@@ -4,6 +4,8 @@ import Home from '@/views/Home'
 import Button from '@/components/Button'
 import RandomDrink from '@/components/RandomDrink'
 import SearchForm from '@/components/SearchForm'
+import '@/directives/focus'
+import '@/filters/uppercase'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Favorites from '@/views/Favorites'
 import Card from '@/components/Card'
 import favoritesStore from '@/store/favorites'
+import '@/filters/uppercase'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
