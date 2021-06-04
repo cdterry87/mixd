@@ -15,15 +15,18 @@
         </router-link>
       </nav>
     </div>
-    <div class="media-right">
-      <i :class="{ fas: isFavorite, far: !isFavorite }" class="fa-star"></i>
+    <div class="media-right" @click="onFavoriteClick">
+      <i
+        :class="{ fas: isFavorite, far: !isFavorite }"
+        class="fa-star is-clickable"
+      ></i>
     </div>
   </article>
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState } = createNamespacedHelpers('favorites')
+const { mapState, mapActions } = createNamespacedHelpers('favorites')
 
 export default {
   name: 'SearchResultsItem',
@@ -45,6 +48,16 @@ export default {
         return favorite.id === this.drink.idDrink
       })
       return favoriteIndex > -1 ? true : false
+    }
+  },
+  methods: {
+    ...mapActions(['addFavorite', 'removeFavorite']),
+    onFavoriteClick() {
+      this.isFavorite
+        ? this.removeFavorite(this.id)
+        : this.addFavorite(this.drink)
+
+      this.$emit('onAddFavorite', this.drink)
     }
   }
 }
