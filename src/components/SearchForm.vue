@@ -7,6 +7,7 @@
             class="input is-medium"
             type="search"
             name="search"
+            v-focus
             v-model="search"
             placeholder="Search for your favorite drink!"
           />
