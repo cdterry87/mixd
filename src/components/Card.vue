@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="route">
+  <router-link :to="`/drink/${this.id}`">
     <div class="card">
       <div v-if="image" class="card-image">
         <figure class="image is-4by3">
@@ -39,11 +39,6 @@ export default {
     subtitle: {
       type: String,
       default: ''
-    }
-  },
-  data() {
-    return {
-      route: `/drink/${this.id}`
     }
   }
 }
