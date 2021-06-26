@@ -5,7 +5,7 @@
     :class="classes"
     class="button"
   >
-    <span data-testid="label">{{ label | uppercase }}</span>
+    <span data-testid="label">{{ label }}</span>
     <span v-if="icon" class="icon" :key="label" data-testid="icon">
       <i :class="icon" />
     </span>

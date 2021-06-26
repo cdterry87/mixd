@@ -4,7 +4,7 @@
       <SearchResultsItem
         v-for="(result, index) in results"
         :key="index"
-        :drink="result"
+        :result="result"
         @favoriteClick="onFavoriteClick"
       />
     </div>
@@ -19,7 +19,7 @@
       <div v-else data-testid="search-init">
         <p class="title is-size-4">Sorry, there are no results to display.</p>
         <p class="subtitle is-size-5">
-          Use the search above to search for your favorite drinks!
+          Use the search above to find what you're looking for!
         </p>
       </div>
     </div>

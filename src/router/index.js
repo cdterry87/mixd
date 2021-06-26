@@ -11,9 +11,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/drink/:id',
-    name: 'Drink',
-    component: () => import('../views/Drink'),
+    path: '/view/:id',
+    name: 'View',
+    component: () => import('../views/View'),
     props: true
   },
   {

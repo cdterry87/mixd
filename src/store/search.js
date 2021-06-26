@@ -1,4 +1,4 @@
-import { cocktailDbService } from '../services/cocktail-db'
+import { apiService } from '../services/api'
 import { SET_SEARCH_RESULTS, GET_SEARCH_RESULTS } from './mutation-types'
 
 const state = {
@@ -6,12 +6,15 @@ const state = {
 }
 
 const actions = {
-  async runSearch({ commit, dispatch }, criteria) {
-    const searchByNameResults = await cocktailDbService.searchDrinkByName(
-      criteria
+  async runSearch({ commit, dispatch }, { criteria, category }) {
+    const searchByNameResults = await apiService.searchByName(
+      criteria,
+      category
     )
-    const searchByIngredientResults =
-      await cocktailDbService.searchDrinkByIngredient(criteria)
+    const searchByIngredientResults = await apiService.searchByIngredient(
+      criteria,
+      category
+    )
     const results = [...searchByNameResults, ...searchByIngredientResults]
 
     commit(SET_SEARCH_RESULTS, results)

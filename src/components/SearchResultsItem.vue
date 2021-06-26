@@ -2,15 +2,19 @@
   <article class="media">
     <figure class="media-left">
       <p class="image is-64x64">
-        <img :src="drink.strDrinkThumb" :alt="drink.strDrink" />
+        <img :src="result[data.image]" :alt="result[data.title]" />
       </p>
     </figure>
     <div class="media-content">
       <div class="content">
-        <h3 class="title is-5">{{ drink.strDrink | uppercase }}</h3>
+        <h3 class="title is-5">{{ result[data.title] | uppercase }}</h3>
       </div>
       <nav class="level is-mobile">
-        <Button v-bind="viewButton" />
+        <Button
+          classes="button is-info is-small"
+          label="Check it out!"
+          :link="`/view/${result[data.id]}`"
+        />
       </nav>
     </div>
     <div
@@ -28,8 +32,7 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('favorites')
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Button from './Button'
 
@@ -39,36 +42,31 @@ export default {
     Button
   },
   props: {
-    drink: {
+    result: {
       type: Object,
       required: true
     }
   },
   computed: {
-    ...mapState(['favorites']),
+    ...mapState('favorites', ['favorites']),
+    ...mapState('categories', ['category']),
+    ...mapGetters('categories', ['data']),
     isFavorite() {
       const favoriteIndex = this.favorites.findIndex(favorite => {
-        return favorite.id === this.drink.idDrink
+        return favorite.id === this.result[this.data.id]
       })
       return favoriteIndex > -1 ? true : false
-    },
-    viewButton() {
-      return {
-        classes: 'button is-info is-small',
-        label: 'View Drink',
-        link: `/drink/${this.drink.idDrink}`
-      }
     }
   },
   methods: {
-    ...mapActions(['addFavorite', 'removeFavorite']),
+    ...mapActions('favorites', ['addFavorite', 'removeFavorite']),
     onFavoriteClick() {
       this.isFavorite
-        ? this.removeFavorite(this.drink.idDrink)
-        : this.addFavorite(this.drink)
+        ? this.removeFavorite(this.result[this.data.id])
+        : this.addFavorite(this.result)
 
       this.$emit('favoriteClick', {
-        name: this.drink.strDrink,
+        name: this.result[this.data.title],
         isFavorite: this.isFavorite
       })
     }

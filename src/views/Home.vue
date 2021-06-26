@@ -5,7 +5,7 @@
     </template>
     <template #side>
       <Button v-bind="favoritesLink" />
-      <RandomDrink />
+      <RandomItem />
     </template>
   </Layout>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import Button from '../components/Button'
 import Layout from '../components/Layout'
-import RandomDrink from '../components/RandomDrink'
+import RandomItem from '../components/RandomItem'
 import SearchForm from '../components/SearchForm'
 
 export default {
@@ -21,7 +21,7 @@ export default {
   components: {
     Button,
     Layout,
-    RandomDrink,
+    RandomItem,
     SearchForm
   },
   computed: {

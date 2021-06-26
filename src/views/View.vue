@@ -9,16 +9,10 @@
           </li>
         </ul>
       </div>
-      <div v-if="drink.strInstructions">
+      <div v-if="result.strInstructions">
         <h3 class="title is-5">Instructions:</h3>
         <p class="mb-4">
-          {{ drink.strInstructions }}
-        </p>
-      </div>
-      <div v-if="drink.strGlass">
-        <h3 class="title is-5">Recommended Glassware:</h3>
-        <p class="mb-4">
-          {{ drink.strGlass }}
+          {{ result.strInstructions }}
         </p>
       </div>
       <div v-if="tags">
@@ -33,10 +27,10 @@
     <template #side>
       <Card
         v-if="!isLoading"
-        :id="id"
-        :image="drink.strDrinkThumb"
-        :title="drink.strDrink"
-        :subtitle="drink.strAlcoholic"
+        :id="result[data.id]"
+        :title="result[data.title]"
+        :subtitle="result[data.subtitle]"
+        :image="result[data.image]"
       />
       <div class="mt-4">
         <Button v-bind="favoriteButton" @click.native="onFavoriteClick" />
@@ -47,16 +41,15 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('favorites')
+import { mapState, mapGetters, mapActions } from 'vuex'
 
-import { cocktailDbService } from '../services/cocktail-db'
+import { apiService } from '../services/api'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import Layout from '../components/Layout'
 
 export default {
-  name: 'Drink',
+  name: 'View',
   components: {
     Button,
     Card,
@@ -71,15 +64,17 @@ export default {
   data() {
     return {
       isLoading: true,
-      drink: {}
+      result: {}
     }
   },
   async created() {
-    this.drink = await cocktailDbService.getDrinkById(this.id)
+    this.result = await apiService.getById(this.id, this.category)
     this.isLoading = false
   },
   computed: {
-    ...mapState(['favorites']),
+    ...mapState('favorites', ['favorites']),
+    ...mapState('categories', ['category']),
+    ...mapGetters('categories', ['data']),
     ingredients() {
       const ingredients = []
 
@@ -87,18 +82,18 @@ export default {
         const ingredientIndex = `strIngredient${i}`
         const measurementIndex = `strMeasure${i}`
 
-        if (!this.drink[ingredientIndex]) break
+        if (!this.result[ingredientIndex]) break
         ingredients.push({
-          measurement: this.drink[measurementIndex],
-          name: this.drink[ingredientIndex]
+          measurement: this.result[measurementIndex],
+          name: this.result[ingredientIndex]
         })
       }
 
       return ingredients
     },
     tags() {
-      if (!this.drink.strTags) return
-      return this.drink.strTags.split(',')
+      if (!this.result.strTags) return
+      return this.result.strTags.split(',')
     },
     favoritesLink() {
       return {
@@ -128,11 +123,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addFavorite', 'removeFavorite']),
+    ...mapActions('favorites', ['addFavorite', 'removeFavorite']),
     onFavoriteClick() {
       this.isFavorite
         ? this.removeFavorite(this.id)
-        : this.addFavorite(this.drink)
+        : this.addFavorite(this.result)
     }
   }
 }
