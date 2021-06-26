@@ -10,7 +10,9 @@ export const API_DATA = {
     ingredient: 'strIngredient',
     measure: 'strMeasure',
     category: 'strCategory',
-    tags: 'strTags'
+    tags: 'strTags',
+    website: 'https://www.thecocktaildb.com/',
+    websiteLabel: 'TheCocktailDB'
   },
   meals: {
     id: 'idMeal',
@@ -22,6 +24,8 @@ export const API_DATA = {
     instructionsCount: 20,
     ingredient: 'strIngredient',
     measure: 'strMeasure',
-    tags: 'strTags'
+    tags: 'strTags',
+    website: 'https://www.themealdb.com/',
+    websiteLabel: 'TheMealDB'
   }
 }

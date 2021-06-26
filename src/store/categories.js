@@ -8,6 +8,14 @@ const state = {
 const getters = {
   data: state => {
     return API_DATA[state.category]
+  },
+  websiteData: state => {
+    const { website, websiteLabel } = API_DATA[state.category]
+
+    return {
+      website,
+      websiteLabel
+    }
   }
 }
 
