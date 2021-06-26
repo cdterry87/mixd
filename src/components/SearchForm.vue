@@ -9,7 +9,7 @@
             name="search"
             v-focus
             v-model="search"
-            placeholder="Search for your favorite drink!"
+            placeholder="Search for something here!"
           />
         </div>
         <div class="control">
@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { mapState, createNamespacedHelpers } from 'vuex'
 import SearchResults from './SearchResults'
 
-const { mapState, mapActions } = createNamespacedHelpers('search')
+const { mapActions } = createNamespacedHelpers('search')
 
 export default {
   name: 'SearchForm',
@@ -48,13 +48,20 @@ export default {
     }
   },
   computed: {
-    ...mapState(['results'])
+    ...mapState('search', ['results']),
+    ...mapState('categories', ['category'])
   },
   methods: {
     ...mapActions(['runSearch']),
     async onSubmit() {
       this.hasSearchBeenPerformed = true
-      await this.runSearch(this.search)
+
+      const searchData = {
+        criteria: this.search,
+        category: this.category
+      }
+
+      await this.runSearch(searchData)
     },
     displayMessage(data) {
       const { name, isFavorite } = data

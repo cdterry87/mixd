@@ -12,12 +12,8 @@
       <div class="columns mt-5 has-text-centered">
         <div class="column is-half">
           MIXD uses data from
-          <a
-            href="https://www.thecocktaildb.com/"
-            target="_blank"
-            data-testid="cocktail-db-link"
-          >
-            TheCocktailDB
+          <a :href="websiteData.website" target="_blank" data-testid="api-link">
+            {{ websiteData.websiteLabel }}
           </a>
         </div>
         <div class="column is-half" data-testid="copyright">
@@ -29,8 +25,14 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapGetters } = createNamespacedHelpers('categories')
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  computed: {
+    ...mapGetters(['websiteData'])
+  }
 }
 </script>
 

@@ -13,7 +13,7 @@
     </div>
     <div class="columns mt-3">
       <div class="column is-one-third is-offset-one-third">
-        <RandomDrink />
+        <RandomItem />
       </div>
     </div>
   </div>
@@ -21,13 +21,13 @@
 
 <script>
 import Button from '../components/Button'
-import RandomDrink from '../components/RandomDrink'
+import RandomItem from '../components/RandomItem'
 
 export default {
-  name: 'NotFound',
+  name: 'NotFoundPage',
   components: {
     Button,
-    RandomDrink
+    RandomItem
   }
 }
 </script>
