@@ -47,7 +47,7 @@ import Card from '../components/Card'
 import Layout from '../components/Layout'
 
 export default {
-  name: 'Favorites',
+  name: 'FavoritesPage',
   components: {
     Card,
     Layout

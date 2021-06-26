@@ -24,7 +24,7 @@ import Button from '../components/Button'
 import RandomItem from '../components/RandomItem'
 
 export default {
-  name: 'NotFound',
+  name: 'NotFoundPage',
   components: {
     Button,
     RandomItem

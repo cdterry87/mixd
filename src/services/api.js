@@ -32,9 +32,6 @@ const getById = async (id, category) => {
 const searchByName = async (name, category) => {
   const API_URL = getApiUrl(category)
 
-  console.log('searchByName API_URL', API_URL)
-  console.log('searchByName category', category)
-
   try {
     const response = await axios.get(`${API_URL}/search.php?s=${name}`)
     return response.data[category] || []

@@ -1,5 +1,9 @@
 import { apiService } from '../services/api'
-import { SET_SEARCH_RESULTS, GET_SEARCH_RESULTS } from './mutation-types'
+import {
+  SET_SEARCH_RESULTS,
+  GET_SEARCH_RESULTS,
+  CLEAR_SEARCH_RESULTS
+} from './mutation-types'
 
 const state = {
   results: []
@@ -23,6 +27,9 @@ const actions = {
   getSearchResults({ commit }) {
     const results = JSON.parse(localStorage.getItem('search')) || []
     commit(GET_SEARCH_RESULTS, results)
+  },
+  clearSearchResults({ commit }) {
+    commit(CLEAR_SEARCH_RESULTS)
   }
 }
 
@@ -32,6 +39,9 @@ const mutations = {
   },
   [GET_SEARCH_RESULTS](state, results) {
     state.results = results
+  },
+  [CLEAR_SEARCH_RESULTS](state) {
+    state.results = []
   }
 }
 

@@ -49,7 +49,7 @@ import Card from '../components/Card'
 import Layout from '../components/Layout'
 
 export default {
-  name: 'View',
+  name: 'ViewPage',
   components: {
     Button,
     Card,

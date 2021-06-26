@@ -17,7 +17,7 @@ import RandomItem from '../components/RandomItem'
 import SearchForm from '../components/SearchForm'
 
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {
     Button,
     Layout,

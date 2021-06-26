@@ -2,7 +2,11 @@
   <Layout class="header my-2">
     <template #content>
       <div class="container">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav
+          class="navbar is-flex is-justify-content-space-between"
+          role="navigation"
+          aria-label="main navigation"
+        >
           <div class="navbar-brand">
             <router-link to="/">
               <h1 class="title is-1">
@@ -20,12 +24,10 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { CATEGORIES } from '../constants/categories'
 import Button from './Button'
 import Layout from './Layout'
-
-const { mapState, mapActions } = createNamespacedHelpers('categories')
 
 export default {
   name: 'Header',
@@ -34,7 +36,7 @@ export default {
     Layout
   },
   computed: {
-    ...mapState(['category']),
+    ...mapState('categories', ['category']),
     switchButton() {
       const label = this.category === CATEGORIES.MEALS ? 'Thirsty?' : 'Hungry?'
       const icon =
@@ -50,9 +52,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['changeCategory']),
+    ...mapActions('categories', ['changeCategory']),
+    ...mapActions('search', ['clearSearchResults']),
     onButtonClick() {
       this.changeCategory()
+      this.clearSearchResults()
+      this.$router.push('/')
     }
   }
 }
