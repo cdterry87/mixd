@@ -113,9 +113,11 @@ export default {
       }
     },
     isFavorite() {
-      const favoriteIndex = this.favorites.findIndex(favorite => {
-        return favorite.id === this.id
-      })
+      const favoriteIndex = this.favorites[this.category].findIndex(
+        favorite => {
+          return favorite.id === this.id
+        }
+      )
       if (favoriteIndex > -1) {
         return true
       }

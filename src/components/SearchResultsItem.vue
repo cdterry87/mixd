@@ -52,9 +52,11 @@ export default {
     ...mapState('categories', ['category']),
     ...mapGetters('categories', ['data']),
     isFavorite() {
-      const favoriteIndex = this.favorites.findIndex(favorite => {
-        return favorite.id === this.result[this.data.id]
-      })
+      const favoriteIndex = this.favorites[this.category].findIndex(
+        favorite => {
+          return favorite.id === this.result[this.data.id]
+        }
+      )
       return favoriteIndex > -1 ? true : false
     }
   },

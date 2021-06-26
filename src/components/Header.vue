@@ -57,7 +57,8 @@ export default {
     onButtonClick() {
       this.changeCategory()
       this.clearSearchResults()
-      this.$router.push('/')
+
+      if (this.$router.history.current.path !== '/') this.$router.push('/')
     }
   }
 }

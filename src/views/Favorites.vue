@@ -2,12 +2,12 @@
   <Layout>
     <template #content>
       <h2 class="title is-2 has-text-centered">
-        Your <span data-testid="total-favorites">{{ totalFavorites }}</span>
-        favorite drinks!
+        All <span data-testid="total-favorites">{{ totalFavorites }}</span>
+        of your favorites are here!
       </h2>
       <div class="columns is-multiline">
         <div
-          v-if="!favorites.length"
+          v-if="!favoritesByCategory.length"
           class="column is-8 is-offset-2 has-text-centered"
         >
           <p class="title is-size-4">Sorry, there is nothing to display.</p>
@@ -17,7 +17,7 @@
         </div>
         <div
           v-else
-          v-for="(favorite, index) in favorites"
+          v-for="(favorite, index) in favoritesByCategory"
           :key="index"
           class="column is-one-third"
         >
@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     ...mapState(['favorites']),
-    ...mapGetters(['totalFavorites'])
+    ...mapGetters(['totalFavorites', 'favoritesByCategory'])
   },
   methods: {
     getDateFromToday
