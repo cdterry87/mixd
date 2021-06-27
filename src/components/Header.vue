@@ -15,7 +15,11 @@
             </router-link>
           </div>
           <div class="navbar-end">
-            <Button v-bind="switchButton" @click.native="onButtonClick" />
+            <Button
+              v-bind="switchButton"
+              @click.native="onButtonClick"
+              data-testid="switch-button"
+            />
           </div>
         </nav>
       </div>

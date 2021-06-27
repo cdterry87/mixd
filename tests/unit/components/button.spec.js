@@ -24,7 +24,7 @@ describe('Button', () => {
   })
 
   it('renders correctly', () => {
-    expect(wrapper.find('[data-testid="label"]').text()).toBe('EXAMPLE')
+    expect(wrapper.find('[data-testid="label"]').text()).toBe('Example')
   })
 
   it('renders with an icon', async () => {
