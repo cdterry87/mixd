@@ -12,13 +12,20 @@ const favorites = require('@/mocks/favorites')
 
 const store = new Vuex.Store({
   modules: {
+    categories: {
+      namespaced: true,
+      state: {
+        category: 'drinks'
+      }
+    },
     favorites: {
       namespaced: true,
       state: {
         favorites
       },
       getters: {
-        totalFavorites: favoritesStore.getters.totalFavorites
+        totalFavorites: favoritesStore.getters.totalFavorites,
+        favoritesByCategory: () => favorites.drinks
       }
     }
   }
@@ -37,7 +44,7 @@ describe('Favorites', () => {
     const cards = wrapper.findAllComponents(Card)
     const total = wrapper.find('[data-testid="total-favorites"]')
 
-    expect(cards.length).toBe(favorites.length)
-    expect(total.text()).toBe(String(favorites.length))
+    expect(cards.length).toBe(favorites.drinks.length)
+    expect(total.text()).toBe(String(favorites.drinks.length))
   })
 })

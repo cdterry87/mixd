@@ -1,19 +1,37 @@
-import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
-import RandomDrink from '@/components/RandomDrink'
+import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import RandomItem from '@/components/RandomItem'
 import Button from '@/components/Button'
 import Card from '@/components/Card'
 import '@/filters/uppercase'
+import Vuex from 'vuex'
+import { API_DATA } from '@/constants/apiData'
 
-const drinks = require('@/mocks/search.json')
+const searchResults = require('@/mocks/search.json')
 
 const localVue = createLocalVue()
+localVue.use(Vuex)
 
-describe('RandomDrink', () => {
+const store = new Vuex.Store({
+  modules: {
+    categories: {
+      namespaced: true,
+      state: {
+        category: 'drinks'
+      },
+      getters: {
+        data: () => API_DATA['drinks']
+      }
+    }
+  }
+})
+
+describe('RandomItem', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(RandomDrink, {
+    wrapper = shallowMount(RandomItem, {
       localVue,
+      store,
       stubs: {
         RouterLink: RouterLinkStub
       }
@@ -26,14 +44,15 @@ describe('RandomDrink', () => {
 
   it('renders correctly', async () => {
     await wrapper.setData({
-      randomDrink: drinks[0]
+      result: searchResults[0],
+      isLoaded: true
     })
     expect(wrapper.find('.title').exists()).toBeTruthy()
     expect(wrapper.findComponent(Button).exists()).toBeTruthy()
     expect(wrapper.findComponent(Card).exists()).toBeTruthy()
   })
 
-  it('renders nothing if a drink is not found', () => {
+  it('renders nothing if a result is not found', () => {
     expect(wrapper.find('.title').exists()).toBeFalsy()
     expect(wrapper.findComponent(Button).exists()).toBeFalsy()
     expect(wrapper.findComponent(Card).exists()).toBeFalsy()

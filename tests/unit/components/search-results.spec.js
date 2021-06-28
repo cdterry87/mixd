@@ -2,6 +2,7 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import SearchResults from '@/components/SearchResults'
 import SearchResultsItem from '@/components/SearchResultsItem'
+import { API_DATA } from '@/constants/apiData'
 import '@/filters/uppercase'
 
 const results = require('@/mocks/search')
@@ -11,6 +12,15 @@ localVue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
+    categories: {
+      namespaced: true,
+      state: {
+        category: 'drinks'
+      },
+      getters: {
+        data: () => API_DATA['drinks']
+      }
+    },
     search: {
       namespaced: true,
       state: {

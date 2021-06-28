@@ -17,8 +17,9 @@ const state = {
 }
 
 const getters = {
-  totalFavorites: state => {
-    return state.favorites.length
+  totalFavorites: (state, _, rootState) => {
+    const category = rootState.categories.category
+    return state.favorites[category].length
   },
   favoritesByCategory: (state, _, rootState) => {
     const category = rootState.categories.category

@@ -1,4 +1,4 @@
-import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import SearchForm from '@/components/SearchForm'
 import SearchResults from '@/components/SearchResults'
@@ -12,6 +12,12 @@ localVue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
+    categories: {
+      namespaced: true,
+      state: {
+        category: 'drinks'
+      }
+    },
     search: {
       namespaced: true,
       state: {
@@ -34,7 +40,7 @@ describe('SearchForm', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(SearchForm, {
+    wrapper = shallowMount(SearchForm, {
       localVue,
       store,
       stubs: {

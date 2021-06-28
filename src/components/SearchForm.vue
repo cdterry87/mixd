@@ -30,10 +30,8 @@
 </template>
 
 <script>
-import { mapState, createNamespacedHelpers } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import SearchResults from './SearchResults'
-
-const { mapActions } = createNamespacedHelpers('search')
 
 export default {
   name: 'SearchForm',
@@ -52,7 +50,7 @@ export default {
     ...mapState('categories', ['category'])
   },
   methods: {
-    ...mapActions(['runSearch']),
+    ...mapActions('search', ['runSearch']),
     async onSubmit() {
       this.hasSearchBeenPerformed = true
 

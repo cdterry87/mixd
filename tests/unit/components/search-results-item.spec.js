@@ -2,9 +2,10 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import SearchResultsItem from '@/components/SearchResultsItem'
 import '@/filters/uppercase'
+import { API_DATA } from '@/constants/apiData'
 
 const favorites = require('@/mocks/favorites.json')
-const drinks = require('@/mocks/search.json')
+const searchResults = require('@/mocks/search.json')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -15,6 +16,19 @@ const store = new Vuex.Store({
       namespaced: true,
       state: {
         favorites
+      },
+      actions: {
+        addFavorite: jest.fn(),
+        removeFavorite: jest.fn()
+      }
+    },
+    categories: {
+      namespaced: true,
+      state: {
+        category: 'drinks'
+      },
+      getters: {
+        data: () => API_DATA['drinks']
       }
     }
   }
@@ -28,7 +42,7 @@ describe('SearchResultsItem', () => {
       localVue,
       store,
       propsData: {
-        drink: drinks[0]
+        result: searchResults[0]
       },
       stubs: {
         RouterLink: RouterLinkStub
@@ -51,9 +65,9 @@ describe('SearchResultsItem', () => {
     expect(wrapper.find('.far.fa-star').exists()).toBeTruthy()
   })
 
-  it('renders with an solid star if drink is a favorite', async () => {
+  it('renders with a solid star if drink is a favorite', async () => {
     await wrapper.setProps({
-      drink: drinks[4]
+      result: searchResults[4]
     })
     expect(wrapper.find('.fas.fa-star').exists()).toBeTruthy()
   })

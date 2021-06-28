@@ -27,6 +27,7 @@ const store = new Vuex.Store({
     }
   }
 })
+
 describe('Header', () => {
   let wrapper
 
