@@ -1,4 +1,6 @@
-# mixd
+# MIXD
+
+> Built with Vue.js (v2). A mixed drinkm finder using [TheCocktailDB](https://www.thecocktaildb.com/). The latest version also includes a meal finder using [TheMealDB](https://www.themealdb.com/) API.
 
 ## Project setup
 ```
