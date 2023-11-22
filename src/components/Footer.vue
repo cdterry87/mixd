@@ -17,7 +17,15 @@
           </a>
         </div>
         <div class="column is-half" data-testid="copyright">
-          &copy; MIXD 2021
+          &copy; 2021 Chase Terry. |
+          <a
+            href="https://chaseterry.com"
+            aria-label="Visit my website!"
+            title="Visit my website!"
+            target="_blank"
+            rel="noreferrer"
+            >https://chaseterry.com</a
+          >
         </div>
       </div>
     </div>
